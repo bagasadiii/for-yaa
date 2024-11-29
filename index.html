@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body class="bg-pink-100 text-gray-900">
+        <!-- Hero Section -->
+        <div class="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-pink-500 to-pink-300 relative overflow-hidden">
+            <!-- Efek Cahaya -->
+            <div id="stars-container"></div>
+            <div id="falling-stars-container"></div>
+    
+            <h1 class="text-5xl lg:text-7xl font-extrabold text-pink drop-shadow-lg relative z-10">
+                Halooo sayangkuuu
+            </h1>
+            <p class="mt-5 text-white text-xl animate-fade-in-delayed relative z-10">
+                I always grateful because I met you.. and you're the greatest thing that ever happened in my life!<br>
+                You always light up my day with your smiles and I cannot be even more proud of you.<br>
+                Thank you for always being there.. 💙💙
+            </p>
+            <!-- Animasi Partikel -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none confetti">
+                <div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div>
+            </div>
+        </div>
+    
+        <!-- Gallery Section -->
+        <div id="gallery" class="py-20 bg-gradient-to-t from-pink-500 to-pink-300">
+            <div id="stars-container"></div>
+            <div id="falling-stars-container"></div>
+            <h2 class="text-4xl font-bold text-center text-pink-800 mb-10 animate-fade-in">
+                My pretty moon:
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                
+                <!-- Foto Polaroid -->
+                <div class="gallery-img mx-5">
+                    <img src="assets/photos/photo1.jpg" alt="Momen 1" class="rounded-lg shadow-lg">
+                </div>
+                <div class="gallery-img mx-5">
+                    <img src="assets/photos/photo2.jpg" alt="Momen 2" class="rounded-lg shadow-lg">
+                </div>
+                <div class="gallery-img mx-5">
+                    <img src="assets/photos/photo3.jpg" alt="Momen 3" class="rounded-lg shadow-lg">
+                </div>
+                <div class="gallery-img mx-5">
+                    <img src="assets/photos/photo4.jpg" alt="Momen 3" class="rounded-lg shadow-lg">
+                </div>
+                <div class="gallery-img mx-5">
+                    <img src="assets/photos/photo5.jpg" alt="Momen 3" class="rounded-lg shadow-lg">
+                </div>
+                <div class="gallery-img mx-5">
+                    <img src="assets/photos/photo6.jpg" alt="Momen 3" class="rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Footer -->
+        <footer class="py-10 bg-pink-700 text-white text-center">
+            <p>Made with 💙 by B</p>
+        </footer>
+    
+        <!-- Overlay for Enlarged Images -->
+        <div id="image-overlay" class="hidden">
+            <div class="active-overlay">
+                <img id="overlay-img" src="" alt="">
+            </div>
+        </div>
+    <script>
+        function scrollToGallery() {
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from(".gallery-img", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.3,
+            duration: 1,
+            scrollTrigger: {
+                trigger: "#gallery",
+                start: "top 80%",
+            },
+        });
+
+// Image Zoom Effect
+        const galleryImages = document.querySelectorAll('.gallery-img img');
+        const overlay = document.getElementById('image-overlay');
+        const overlayImg = document.getElementById('overlay-img');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                overlayImg.src = img.src;
+                overlay.classList.remove('hidden');
+            });
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+        });
+        const starsContainer = document.getElementById('stars-container');
+        const fallingStarsContainer = document.getElementById('falling-stars-container');
+
+        // Twinkling Stars
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'twinkle';
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // Falling Stars
+        for (let i = 0; i < 20; i++) {
+            const fallingStar = document.createElement('div');
+            fallingStar.className = 'falling-star';
+            fallingStar.style.top = `${Math.random() * 50}vh`;
+            fallingStar.style.left = `${Math.random() * 100}vw`;
+            fallingStar.style.animationDelay = `${Math.random() * 5}s`;
+            fallingStarsContainer.appendChild(fallingStar);
+        }
+    </script>
+</body>
+</html>

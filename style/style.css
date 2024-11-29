@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Polaroid Style */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-delayed {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Confetti Styles */
+.confetti div {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    animation: float 4s infinite ease-in-out;
+}
+.confetti div:nth-child(1) { left: 10%; animation-delay: 0s; background-color: #ffb6c1; }
+.confetti div:nth-child(2) { left: 20%; animation-delay: 1s; background-color: #ff69b4; }
+.confetti div:nth-child(3) { left: 30%; animation-delay: 2s; background-color: #ff1493; }
+.confetti div:nth-child(4) { left: 40%; animation-delay: 3s; background-color: #db7093; }
+.confetti div:nth-child(5) { left: 50%; animation-delay: 4s; background-color: #c71585; }
+.confetti div:nth-child(6) { left: 60%; animation-delay: 5s; background-color: #ff69b4; }
+.confetti div:nth-child(7) { left: 70%; animation-delay: 6s; background-color: #db7093; }
+.confetti div:nth-child(8) { left: 80%; animation-delay: 7s; background-color: #ffb6c1; }
+.confetti div:nth-child(9) { left: 90%; animation-delay: 8s; background-color: #ff1493; }
+
+/* Polaroid Effects */
+.polaroid {
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fade-in 1s ease-in-out;
+}
+.polaroid:hover {
+    transform: scale(1.1) rotate(-3deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating Photos */
+.polaroid img {
+    animation: float 3s infinite ease-in-out;
+}
+.confetti div {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    opacity: 0.7;
+    animation: fall 5s linear infinite;
+    top: -50px;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.confetti div:nth-child(1) { left: 10%; animation-delay: 0s; }
+.confetti div:nth-child(2) { left: 20%; animation-delay: 1s; }
+.confetti div:nth-child(3) { left: 30%; animation-delay: 2s; }
+.confetti div:nth-child(4) { left: 40%; animation-delay: 3s; }
+.confetti div:nth-child(5) { left: 50%; animation-delay: 4s; }
+.confetti div:nth-child(6) { left: 60%; animation-delay: 5s; }
+.confetti div:nth-child(7) { left: 70%; animation-delay: 6s; }
+.confetti div:nth-child(8) { left: 80%; animation-delay: 7s; }
+.confetti div:nth-child(9) { left: 90%; animation-delay: 8s; }
+
+.gallery-img {
+    overflow: hidden;
+    transform-origin: center;
+    cursor: pointer;
+}
+
+.gallery-img img {
+    transition: transform 0.4s ease-in-out;
+}
+
+.gallery-img:hover img {
+    transform: scale(1.1);
+}
+
+.active-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.active-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+.falling-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    opacity: 0.8;
+    animation: falling-star 3s linear infinite;
+}
+
+@keyframes falling-star {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-200px) translateY(200px) scale(0);
+        opacity: 0;
+    }
+}
+
+.twinkle {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    opacity: 0;
+    animation: twinkle 1.5s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.twinkle:nth-child(odd) {
+    animation-delay: 1s;
+}
+
+.twinkle:nth-child(even) {
+    animation-delay: 0.5s;
+}
